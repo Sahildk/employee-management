@@ -7,6 +7,7 @@ A state-of-the-art, premium full-stack web application designed for seamless emp
 ![Tech Stack](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
 ![Tech Stack](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Tech Stack](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Tech Stack](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)
 
 ## ✨ Premium Features
 
@@ -25,6 +26,8 @@ A state-of-the-art, premium full-stack web application designed for seamless emp
     - RESTful API built with Flask.
     - MongoDB Atlas integration for scalable data storage.
     - Dockerized for consistent deployment.
+- **Automated CI/CD**:
+    - Full Jenkins pipeline for Build, Test, and Deploy.
 
 ## 🚀 Tech Stack
 
@@ -45,12 +48,18 @@ A state-of-the-art, premium full-stack web application designed for seamless emp
 - **Driver**: PyMongo
 - **Utilities**: Flask-CORS, Dotenv
 
+### DevOps & Infrastructure
+- **Docker**: Containerization for Backend and Frontend.
+- **Docker Compose**: Orchestration of services.
+- **Jenkins**: Automated CI/CD pipelines.
+
 ## 🛠️ Setup Instructions
 
 ### Prerequisites
 - Node.js 18+
 - Python 3.10+
 - MongoDB Atlas Connection URI
+- Docker & Jenkins (for CI/CD)
 
 ### 1. Backend Setup
 
@@ -107,6 +116,22 @@ _The application will be available at [`http://localhost:3000`](http://localhost
 | `PUT` | `/api/employees/<id>` | Update an employee |
 | `DELETE` | `/api/employees/<id>` | Delete an employee |
 
+## 🔄 CI/CD Pipeline (Jenkins)
+
+The project includes a `Jenkinsfile` for automated deployment:
+
+1.  **Checkout**: Pulls code from the repository.
+2.  **Build**:
+    *   Builds `employee-management-backend` Docker image.
+    *   Builds `employee-management-frontend` Docker image.
+3.  **Test**: Runs placeholder tests for both services.
+4.  **Push**: Pushes Docker images to the registry (on `main` branch).
+5.  **Deploy**: Deploys the application containers.
+
+**Configuration**:
+*   Set `DOCKER_REGISTRY` in `Jenkinsfile`.
+*   Configure Docker credentials in Jenkins with ID `docker-credentials`.
+
 ## 📂 Project Structure
 
 ```
@@ -125,6 +150,8 @@ _The application will be available at [`http://localhost:3000`](http://localhost
 │   │   ├── lib/           # Utilities and API services
 │   │   └── types/         # TypeScript definitions
 │   └── public/            # Static assets
+├── Jenkinsfile            # CI/CD Pipeline
+├── docker-compose.yml     # Docker Services
 └── README.md              # Project documentation
 ```
 
