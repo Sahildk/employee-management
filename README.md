@@ -1,316 +1,143 @@
-# Employee Management System
+# Premium Employee Management System
 
-A full-stack web application for managing employee records with CRUD operations, built with Flask backend, Next.js frontend, MongoDB Atlas database, and containerized with Docker.
+A state-of-the-art, premium full-stack web application designed for seamless employee management. Built with a powerful **Flask** backend and a stunning **Next.js 16** frontend featuring **Aceternity UI** and **Shadcn UI** components.
 
+![Tech Stack](https://img.shields.io/badge/Next.js%2016-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Tech Stack](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Tech Stack](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)
+![Tech Stack](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Tech Stack](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-## 🚀 Features
+## ✨ Premium Features
 
-- **Full CRUD Operations**: Create, Read, Update, and Delete employee records
-- **Modern UI**: Glassmorphism design with dark mode and smooth animations
-- **RESTful API**: Well-structured Flask backend with MongoDB integration
-- **Containerized**: Docker and docker-compose for easy deployment
-- **CI/CD Pipeline**: Jenkins pipeline for automated builds and deployments
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Top-Tier UI/UX**:
+    - **Aceternity UI Spotlight**: Dynamic lighting effects on the landing page.
+    - **Glassmorphism**: Advanced frosted glass aesthetics using backdrop-blur.
+    - **Dark Mode**: Optimized dark theme for a sleek, professional look.
+    - **Animations**: Smooth transitions powered by Framer Motion.
+- **Advanced Dashboard**:
+    - **Real-Time Data**: Live fetching of employee records.
+    - **Interactive Tables**: premium Shadcn UI tables with hover effects.
+    - **Search & Filter**: Instant filtering by name, role, or department.
+    - **Smart Forms**: Validated with Zod and React Hook Form.
+    - **Toast Notifications**: Interactive success/error alerts using Sonner.
+- **Robust Backend**:
+    - RESTful API built with Flask.
+    - MongoDB Atlas integration for scalable data storage.
+    - Dockerized for consistent deployment.
 
-## 📋 Tech Stack
-
-### Backend
-- **Python 3.11** with Flask framework
-- **MongoDB Atlas** for cloud database
-- **Flask-CORS** for cross-origin requests
-- **pymongo** for MongoDB operations
+## 🚀 Tech Stack
 
 ### Frontend
-- **Next.js 16** with React 19
-- **TypeScript** for type safety
-- **TailwindCSS** for styling
-- **Axios** for API calls
-- **Lucide React** for icons
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **UI Libraries**:
+    - Shadcn UI (Components)
+    - Aceternity UI (Effects)
+    - Lucide React (Icons)
+- **State Management**: React Hooks
+- **Form Handling**: React Hook Form + Zod
 
-### DevOps
-- **Docker** for containerization
-- **Docker Compose** for orchestration
-- **Jenkins** for CI/CD pipeline
-- **GitHub** for version control
-
-## 🏗️ Project Structure
-
-```
-employee-management-system/
-├── backend/                # Flask Application
-│   ├── app.py              # Entry point
-│   ├── Dockerfile          # Backend Docker image
-│   ├── requirements.txt    # Python dependencies
-│   ├── models/             # Database models
-│   │   └── employee.py     # Employee model
-│   └── routes/             # API endpoints
-│       └── employee_routes.py
-├── frontend/               # Next.js Application
-│   ├── app/                # Next.js app directory
-│   │   ├── page.tsx        # Main dashboard
-│   │   └── globals.css     # Global styles
-│   ├── components/         # React components
-│   │   ├── Navbar.tsx
-│   │   ├── EmployeeCard.tsx
-│   │   └── EmployeeForm.tsx
-│   ├── Dockerfile          # Frontend Docker image
-│   └── package.json        # JS dependencies
-├── docker-compose.yml      # Orchestrates both services
-├── Jenkinsfile             # CI/CD Pipeline configuration
-└── README.md               # This file
-```
+### Backend
+- **Framework**: Flask (Python 3.11+)
+- **Database**: MongoDB Atlas
+- **Driver**: PyMongo
+- **Utilities**: Flask-CORS, Dotenv
 
 ## 🛠️ Setup Instructions
 
 ### Prerequisites
-- Docker and Docker Compose installed
-- MongoDB Atlas account (or local MongoDB)
-- Node.js 20+ (for local development)
-- Python 3.11+ (for local development)
+- Node.js 18+
+- Python 3.10+
+- MongoDB Atlas Connection URI
 
-### Option 1: Docker Compose (Recommended)
+### 1. Backend Setup
 
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd employee-management-system
-   ```
+navigate to the `backend` folder:
+```bash
+cd backend
+```
 
-2. **Update MongoDB connection string**
-   
-   Edit `docker-compose.yml` and replace `<db_password>` with your actual MongoDB password:
-   ```yaml
-   environment:
-     - MONGODB_URI=mongodb+srv://admin:YOUR_PASSWORD@cluster0.vszrnok.mongodb.net/?appName=Cluster0
-   ```
+Create a virtual environment:
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Mac/Linux
+source venv/bin/activate
+```
 
-3. **Build and run with Docker Compose**
-   ```bash
-   docker-compose up --build
-   ```
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-4. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
-   - Health Check: http://localhost:5000/api/health
+Run the server:
+```bash
+python app.py
+```
+_The server will start at `http://localhost:5000`_
 
-### Option 2: Local Development
+### 2. Frontend Setup
 
-#### Backend Setup
+Open a new terminal and navigate to the `frontend` folder:
+```bash
+cd frontend
+```
 
-1. **Navigate to backend directory**
-   ```bash
-   cd backend
-   ```
+Install dependencies:
+```bash
+npm install
+```
 
-2. **Create virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Create .env file**
-   ```bash
-   cp .env.example .env
-   ```
-   
-   Edit `.env` and add your MongoDB connection string:
-   ```
-   MONGODB_URI=mongodb+srv://admin:YOUR_PASSWORD@cluster0.vszrnok.mongodb.net/?appName=Cluster0
-   PORT=5000
-   ```
-
-5. **Run the backend**
-   ```bash
-   python app.py
-   ```
-
-#### Frontend Setup
-
-1. **Navigate to frontend directory**
-   ```bash
-   cd frontend
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Create .env.local file**
-   ```bash
-   NEXT_PUBLIC_API_URL=http://localhost:5000
-   ```
-
-4. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open browser**
-   
-   Navigate to http://localhost:3000
+Run the development server:
+```bash
+npm run dev
+```
+_The application will be available at [`http://localhost:3000`](http://localhost:3000)_
 
 ## 📡 API Endpoints
 
-### Employee Routes
-
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/employees` | Get all employees |
-| GET | `/api/employees/<id>` | Get single employee by ID |
-| POST | `/api/employees` | Create new employee |
-| PUT | `/api/employees/<id>` | Update employee by ID |
-| DELETE | `/api/employees/<id>` | Delete employee by ID |
+| `GET` | `/api/employees` | Retrieve all employees |
+| `GET` | `/api/employees/<id>` | Retrieve a specific employee |
+| `POST` | `/api/employees` | Create a new employee |
+| `PUT` | `/api/employees/<id>` | Update an employee |
+| `DELETE` | `/api/employees/<id>` | Delete an employee |
 
-### Health Check
+## 📂 Project Structure
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/health` | Check API health status |
-
-### Request/Response Examples
-
-**Create Employee (POST /api/employees)**
-```json
-{
-  "name": "John Doe",
-  "email": "john.doe@company.com",
-  "position": "Software Engineer",
-  "department": "Engineering",
-  "salary": 75000,
-  "hire_date": "2024-01-15"
-}
 ```
-
-**Response**
-```json
-{
-  "_id": "507f1f77bcf86cd799439011",
-  "name": "John Doe",
-  "email": "john.doe@company.com",
-  "position": "Software Engineer",
-  "department": "Engineering",
-  "salary": 75000,
-  "hire_date": "2024-01-15"
-}
+.
+├── backend/               # Flask API
+│   ├── app.py             # Entry point
+│   ├── content/           # Static content (if any)
+│   ├── models/            # Database models (Employee)
+│   └── routes/            # API endpoints
+├── frontend/              # Next.js Application
+│   ├── src/
+│   │   ├── app/           # App Router pages (Dashboard, Home)
+│   │   ├── components/    # Reusable UI components
+│   │   │   ├── ui/        # Shadcn UI primitives
+│   │   │   └── ...
+│   │   ├── lib/           # Utilities and API services
+│   │   └── types/         # TypeScript definitions
+│   └── public/            # Static assets
+└── README.md              # Project documentation
 ```
-
-## 🔄 CI/CD Pipeline
-
-The Jenkins pipeline includes the following stages:
-
-1. **Checkout**: Clone code from GitHub
-2. **Build Backend**: Build Flask Docker image
-3. **Build Frontend**: Build Next.js Docker image
-4. **Test Backend**: Run backend tests
-5. **Test Frontend**: Run frontend tests
-6. **Push to Registry**: Push images to Docker registry (main branch only)
-7. **Deploy**: Deploy application (main branch only)
-
-### Setting up Jenkins
-
-1. Install Jenkins with Docker plugin
-2. Create a new Pipeline job
-3. Point to your GitHub repository
-4. Configure webhook for automatic builds
-5. Add Docker registry credentials (ID: `docker-credentials`)
-
-## 🎨 UI Features
-
-- **Glassmorphism Design**: Modern frosted glass effect
-- **Dark Mode**: Eye-friendly dark theme
-- **Gradient Backgrounds**: Beautiful purple/blue gradients
-- **Smooth Animations**: Hover effects and transitions
-- **Responsive Layout**: Mobile-first design
-- **Loading States**: Elegant loading indicators
-- **Error Handling**: User-friendly error messages
 
 ## 🔐 Environment Variables
 
-### Backend (.env)
-```
-MONGODB_URI=your_mongodb_connection_string
+**Backend (.env)**
+```env
+MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/?appName=Cluster0
 PORT=5000
 ```
 
-### Frontend (.env.local)
-```
-NEXT_PUBLIC_API_URL=http://localhost:5000
-```
-
-## 🐳 Docker Commands
-
-**Build images**
-```bash
-docker-compose build
-```
-
-**Start services**
-```bash
-docker-compose up
-```
-
-**Start in detached mode**
-```bash
-docker-compose up -d
-```
-
-**Stop services**
-```bash
-docker-compose down
-```
-
-**View logs**
-```bash
-docker-compose logs -f
-```
-
-**Rebuild and restart**
-```bash
-docker-compose up --build --force-recreate
-```
-
-## 🧪 Testing
-
-### Backend Tests
-```bash
-cd backend
-python -m pytest tests/
-```
-
-### Frontend Tests
-```bash
-cd frontend
-npm test
-```
-
-## 📝 License
-
-This project is open source and available under the MIT License.
-
-## 👥 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📧 Contact
-
-For questions or support, please open an issue in the GitHub repository.
+**Frontend**
+The frontend is configured to proxy requests or point directly to `http://localhost:5000/api`.
 
 ---
-
-**Built with ❤️ using Flask, Next.js, and MongoDB**
+**Built with precision and style.**
