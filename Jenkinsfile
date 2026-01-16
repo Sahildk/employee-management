@@ -38,9 +38,15 @@ pipeline {
 
         stage('Test Backend') {
             steps {
-                echo 'Running Backend Tests...'
-                // Run pytest with coverage report in XML format for SonarQube
-                bat "docker run --rm %BACKEND_IMAGE%:%IMAGE_TAG% pytest --cov=. --cov-report=xml"
+                echo 'Running Backend Tests with Coverage...'
+                dir('backend') {
+                    bat '''
+                    python -m venv venv
+                    venv\\Scripts\\activate
+                    pip install -r requirements.txt
+                    pytest --cov=. --cov-report=xml
+                    '''
+                }
             }
         }
 
