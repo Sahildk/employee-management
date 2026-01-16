@@ -34,7 +34,7 @@ export default function Home() {
       <div className="p-4 max-w-7xl mx-auto relative z-10 w-full pt-32 md:pt-48">
         <div className="text-center max-w-3xl mx-auto">
             <Badge variant="outline" className="mb-4 text-neutral-300 border-neutral-800 bg-neutral-900/50 backdrop-blur">
-             ✨ v2.0 Now Available
+             🚀 The Future of Work is Here
             </Badge>
           <h1 className="text-4xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50 pb-4">
             Master Your Workforce <br /> with Precision.
