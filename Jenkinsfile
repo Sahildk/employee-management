@@ -85,5 +85,17 @@ pipeline {
                 bat "docker compose up -d --build"
             }
         }
+
+        post {
+            success {
+                echo 'Pipeline completed successfully'
+            }
+            failure {
+                echo 'Pipeline failed'
+            }
+            always {
+                echo 'Pipeline execution finished'
+            }
+        }
     }
 }
