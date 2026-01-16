@@ -50,6 +50,31 @@ pipeline {
             }
         }
 
+        stage('SonarCloud Analysis') {
+            steps {
+                withSonarQubeEnv('SonarCloud') {
+                    bat """
+                    docker run --rm ^
+                    -e SONAR_HOST_URL=https://sonarcloud.io ^
+                    -e SONAR_LOGIN=%SONAR_AUTH_TOKEN% ^
+                    -v "%cd%:/usr/src" ^
+                    sonarsource/sonar-scanner-cli ^
+                    -Dsonar.organization=sahildk ^
+                    -Dsonar.projectKey=Sahildk_employee-management ^
+                    -Dsonar.sources=.
+                    """
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 2, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying Application using Docker Compose...'
