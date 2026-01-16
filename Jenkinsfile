@@ -55,16 +55,17 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarCloud') {
                     withCredentials([string(credentialsId: 'sonarcloud-token', variable: 'SONAR_TOKEN')]) {
-                        bat """
-                        docker run --rm ^
-                        -e SONAR_HOST_URL=https://sonarcloud.io ^
-                        -e SONAR_TOKEN=%SONAR_TOKEN% ^
-                        -v "%cd%:/usr/src" ^
-                        sonarsource/sonar-scanner-cli ^
-                        -Dsonar.organization=sahildk ^
-                        -Dsonar.projectKey=Sahildk_employee-management ^
-                        -Dsonar.sources=.
-                        """
+                        script {
+                            def scannerHome = tool 'sonar-scanner'
+                            bat """
+                            "${scannerHome}\\bin\\sonar-scanner" ^
+                            -Dsonar.organization=sahildk ^
+                            -Dsonar.projectKey=Sahildk_employee-management ^
+                            -Dsonar.sources=. ^
+                            -Dsonar.python.coverage.reportPaths=backend/coverage.xml ^
+                            -Dsonar.login=%SONAR_TOKEN%
+                            """
+                        }
                     }
                 }
             }
@@ -72,7 +73,7 @@ pipeline {
 
         stage('Quality Gate') {
             steps {
-                timeout(time: 2, unit: 'MINUTES') {
+                timeout(time: 5, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
