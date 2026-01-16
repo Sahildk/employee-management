@@ -39,7 +39,8 @@ pipeline {
         stage('Test Backend') {
             steps {
                 echo 'Running Backend Tests...'
-                bat "echo Backend tests would run here"
+                // Run pytest with coverage report in XML format for SonarQube
+                bat "docker run --rm %BACKEND_IMAGE%:%IMAGE_TAG% pytest --cov=. --cov-report=xml"
             }
         }
 

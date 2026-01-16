@@ -30,11 +30,35 @@ services:
       dockerfile: Dockerfile
     container_name: em-frontend
     ports:
-      - "3000:3000"
+      - "3001:3000"
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:5000
     depends_on:
       - backend
+    networks:
+      - em-network
+    restart: unless-stopped
+
+  # Prometheus Service
+  prometheus:
+    image: prom/prometheus
+    container_name: em-prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - em-network
+    restart: unless-stopped
+
+  # Grafana Service
+  grafana:
+    image: grafana/grafana
+    container_name: em-grafana
+    ports:
+      - "3002:3000"
+    depends_on:
+      - prometheus
     networks:
       - em-network
     restart: unless-stopped

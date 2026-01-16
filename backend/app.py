@@ -4,12 +4,17 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 from routes.employee_routes import employee_bp, init_routes
+from prometheus_flask_exporter import PrometheusMetrics
 
 # Load environment variables
 load_dotenv()
 
 # Initialize Flask app
 app = Flask(__name__)
+# Initialize Prometheus Metrics
+metrics = PrometheusMetrics(app, path='/metrics')
+metrics.info('app_info', 'Application info', version='1.0.0')
+
 CORS(app)  # Enable CORS for frontend communication
 
 # MongoDB Atlas connection
@@ -57,4 +62,4 @@ def root():
     }), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=PORT, debug=True)
+    app.run(host='0.0.0.0', port=PORT, debug=False)
