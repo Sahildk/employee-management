@@ -54,16 +54,18 @@ pipeline {
         stage('SonarCloud Analysis') {
             steps {
                 withSonarQubeEnv('SonarCloud') {
-                    bat """
-                    docker run --rm ^
-                    -e SONAR_HOST_URL=https://sonarcloud.io ^
-                    -e SONAR_LOGIN=%SONAR_AUTH_TOKEN% ^
-                    -v "%cd%:/usr/src" ^
-                    sonarsource/sonar-scanner-cli ^
-                    -Dsonar.organization=sahildk ^
-                    -Dsonar.projectKey=Sahildk_employee-management ^
-                    -Dsonar.sources=.
-                    """
+                    withCredentials([string(credentialsId: 'sonarcloud-token', variable: 'SONAR_TOKEN')]) {
+                        bat """
+                        docker run --rm ^
+                        -e SONAR_HOST_URL=https://sonarcloud.io ^
+                        -e SONAR_TOKEN=%SONAR_TOKEN% ^
+                        -v "%cd%:/usr/src" ^
+                        sonarsource/sonar-scanner-cli ^
+                        -Dsonar.organization=sahildk ^
+                        -Dsonar.projectKey=Sahildk_employee-management ^
+                        -Dsonar.sources=.
+                        """
+                    }
                 }
             }
         }
