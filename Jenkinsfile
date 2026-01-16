@@ -11,14 +11,12 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                echo 'Checking out code from GitHub...'
                 checkout scm
             }
         }
 
         stage('Build Backend') {
             steps {
-                echo 'Building Backend Docker Image...'
                 dir('backend') {
                     bat "docker build -t %BACKEND_IMAGE%:%IMAGE_TAG% ."
                     bat "docker build -t %BACKEND_IMAGE%:latest ."
@@ -28,7 +26,6 @@ pipeline {
 
         stage('Build Frontend') {
             steps {
-                echo 'Building Frontend Docker Image...'
                 dir('frontend') {
                     bat "docker build -t %FRONTEND_IMAGE%:%IMAGE_TAG% ."
                     bat "docker build -t %FRONTEND_IMAGE%:latest ."
@@ -38,7 +35,6 @@ pipeline {
 
         stage('Test Backend') {
             steps {
-                echo 'Running Backend Tests with Coverage...'
                 dir('backend') {
                     bat '''
                     python -m venv venv
@@ -52,8 +48,7 @@ pipeline {
 
         stage('Test Frontend') {
             steps {
-                echo 'Running Frontend Tests...'
-                bat "echo Frontend tests would run here"
+                bat "echo Frontend tests placeholder"
             }
         }
 
@@ -69,7 +64,7 @@ pipeline {
                             -Dsonar.projectKey=Sahildk_employee-management ^
                             -Dsonar.sources=. ^
                             -Dsonar.python.coverage.reportPaths=backend/coverage.xml ^
-                            -Dsonar.login=%SONAR_TOKEN%
+                            -Dsonar.token=%SONAR_TOKEN%
                             """
                         }
                     }
@@ -87,21 +82,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploying Application using Docker Compose...'
                 bat "docker compose up -d --build"
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed!'
-        }
-        always {
-            echo 'Pipeline execution finished.'
         }
     }
 }
