@@ -60,7 +60,7 @@ pipeline {
 
                 stage('Test Frontend') {
                     steps {
-                        echo 'Frontend tests placeholder (can be extended later)'
+                        echo 'Frontend tests placeholder'
                     }
                 }
             }
