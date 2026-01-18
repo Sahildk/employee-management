@@ -8,6 +8,9 @@ A state-of-the-art, premium full-stack web application designed for seamless emp
 ![Tech Stack](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Tech Stack](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Tech Stack](https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white)
+![Tech Stack](https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white)
+![Tech Stack](https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white)
+![Tech Stack](https://img.shields.io/badge/SonarCloud-F3702A?style=for-the-badge&logo=sonarcloud&logoColor=white)
 
 ## ✨ Premium Features
 
@@ -52,6 +55,9 @@ A state-of-the-art, premium full-stack web application designed for seamless emp
 - **Docker**: Containerization for Backend and Frontend.
 - **Docker Compose**: Orchestration of services.
 - **Jenkins**: Automated CI/CD pipelines.
+- **Prometheus**: Real-time metrics monitoring.
+- **Grafana**: Data visualization and dashboards.
+- **SonarCloud**: Static code analysis and quality gates.
 
 ## 🛠️ Setup Instructions
 
@@ -124,9 +130,14 @@ The project includes a `Jenkinsfile` for automated deployment:
 2.  **Build**:
     *   Builds `employee-management-backend` Docker image.
     *   Builds `employee-management-frontend` Docker image.
-3.  **Test**: Runs placeholder tests for both services.
-4.  **Push**: Pushes Docker images to the registry (on `main` branch).
-5.  **Deploy**: Deploys the application containers.
+3.  **Test**: 
+    *   Runs backend tests using **Pytest**.
+    *   Generates coverage reports.
+4.  **Quality Analysis**:
+    *   Scans code with **SonarCloud** for bugs, vulnerabilities, and code smells.
+    *   Enforces Quality Gates to ensure code health.
+5.  **Push**: Pushes Docker images to the registry (on `main` branch).
+6.  **Deploy**: Deploys the application containers.
 
 **Configuration**:
 *   Set `DOCKER_REGISTRY` in `Jenkinsfile`.
