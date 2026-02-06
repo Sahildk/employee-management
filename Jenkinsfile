@@ -13,7 +13,7 @@ pipeline {
         stage('Source: Checkout from Git') {
             steps {
                 echo 'Fetching source code from GitHub...'
-                checkout scm
+                checkout scm    // scm -source code management
             }
         }
 
